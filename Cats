@@ -1,0 +1,91 @@
+package project1;
+
+public class Cat {
+	protected String name, color;
+	protected int mustachLength;
+	
+	
+	public void setName (String name) {
+		this.name = name;
+	}
+	
+	public void setColor (String color) {
+		this.color = color;
+	}
+	
+	public Cat (String name, int mustachLength, String color) {
+		setName(name);
+		this.mustachLength = mustachLength;
+		setColor(color);
+	}
+	
+	public String toString() {
+		return ("name: " + name + " color: "+ color + " mustachLength: "+ mustachLength);
+	}
+}
+
+
+
+
+package project1;
+
+public class SiamiCat extends Cat {
+
+	private String favoriteFood;
+	
+	public SiamiCat(String name, int mustachLength, String color, String favoriteFood) {
+		super(name, mustachLength, color);
+		this.favoriteFood = favoriteFood;
+	}
+	
+	public String toString() {
+		return super.toString()+ "favorite food is: "+ favoriteFood;
+	}
+}
+
+
+
+
+
+
+
+package project1;
+
+
+public class StreetCat extends Cat {
+	private int numOfFights;
+	
+	public StreetCat(String name, int mustachLength, String color,int numOfFights) {
+		super(name,mustachLength,color);
+		this.numOfFights=numOfFights;
+	}
+	
+	public void addFight() {
+		this.numOfFights +=1;
+	}
+	
+	public String toString() {
+		return super.toString() + "num of fights: " + numOfFights;
+	}
+}
+
+
+package project1;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Cat c1 = new Cat("topaz", 19, "red");
+		SiamiCat siami1 = new SiamiCat ("doron", 20, "blue", "apple");
+		StreetCat street1 = new StreetCat("sapir", 21, "grey", 13);
+		
+		System.out.println(c1.toString());
+		System.out.println(street1.toString());
+		System.out.println(siami1.toString());
+
+		
+	}
+
+}
+
+
