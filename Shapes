@@ -1,0 +1,125 @@
+package project1;
+
+public abstract class Shape {
+	protected int width;
+	protected String color;
+	
+	public Shape (int width, String color) {
+		this.width = width;
+		this.color= color;
+	}
+	
+	public abstract double getArea();
+	public abstract double getPeremiter();
+	
+	public String toString() {
+		return (this.getClass().getSimpleName() +  "->> frameThick : " +width + " color: " + color);
+	}
+	
+	public double getFrameThick() {
+		return width;
+	}
+	
+	public String getColor() {
+		return color;
+	}
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+package project1;
+
+public class Square extends Shape{
+	private int squareSide;
+	
+	public Square(int width, String color, int squareSide) {
+		super(width, color);
+		this.squareSide = squareSide;
+	}
+	
+	public void draw() {
+		for(int i=0; i<squareSide; i++) {
+			for(int j=0; j<squareSide; j++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+	
+	public double getArea() {
+		return squareSide*2;
+	}
+	public  double getPeremiter() {
+		return squareSide*4;
+	}
+	
+	public int getSquareSide() {
+		return squareSide;
+	}
+	
+	public String toString() {
+		return (super.toString() + " squareSide: " + squareSide);
+	}
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+package project1;
+
+public class Circle extends Shape{
+	private double radious;
+	
+	public Circle(int width, String color, double radious) {
+		super(width, color);
+		this.radious=radious;
+	}
+	
+	public double getRadious() {
+		return radious;
+	}
+	
+	public double getArea() {
+		return 3.14 * (radious*radious);
+	}
+	public double getPeremiter() {
+		return 2*3.14*(radious);
+	}
+	
+	public String toString() {
+		return (super.toString() + " radious: " + radious);
+	}
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+package project1;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		System.out.println("how many shapes? ");
+		int size = s.nextInt();
+		Shape[] shapes = new Shape[size];
+		
+		for (int i=0;i<size;i++) {
+			System.out.println("do you want to create a circle? - True / False");
+			boolean isCircle = s.nextBoolean(); 
+			if(isCircle) {
+				shapes[i] = new Circle(5,"red", 7);
+			}
+			else {
+				shapes[i] = new Square(4,"yellow", 5);
+			}
+		}
+		
+		for (int i=0;i<size;i++) {
+			System.out.println(shapes[i].toString());
+			if(shapes[i] instanceof Square) {
+				Square temp = (Square)shapes[i];
+				temp.draw();
+			}
+		
+		}
+
+}
+}
